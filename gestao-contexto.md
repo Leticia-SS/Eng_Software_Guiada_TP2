@@ -63,7 +63,7 @@ Apenas o código Python para os dois trechos (serviço e endpoint), sem explica�
 
 ## Trechos Descartados Deliberadamente
 
-- **Corpo completo dos arquivos:** Descartado para não exceder a janela de contexto e diluir a informação relevante (Slides Etapa 3, p. 48).
+- **Corpo completo dos arquivos:** Descartado para não exceder a janela de contexto e diluir a informação relevante.
 - **Outros métodos dos serviços (ex: `listar_tickets`, `fechar_ticket`):** Não são relevantes para a tarefa de adicionar comentário.
 - **Configurações de banco de dados e logging:** A IA não precisa saber como o banco é configurado para gerar a lógica de negócio.
 - **Testes existentes de outras funcionalidades:** Poderiam confundir o modelo com padrões de teste não relacionados.
@@ -73,7 +73,7 @@ Apenas o código Python para os dois trechos (serviço e endpoint), sem explica�
 
 ## Estratégia de Gestão de Contexto em Projeto Grande
 
-Para um projeto maior que o Nimbus Desk, a estratégia seria baseada em três pilares (Slides Etapa 3, p. 40-43):
+Para um projeto maior que o Nimbus Desk, a estratégia seria baseada em três pilares:
 
 1. **Documento de Contexto do Projeto (Fonte Única):** Manter um arquivo `CONTEXT.md` no repositório, versionado, com o objetivo do sistema, tecnologias, padrões de código, decisões de arquitetura e regras de negócio imutáveis. Este documento é a base para qualquer prompt.
 2. **Mapa do Projeto e Resumos de Módulos:** Em vez de arquivos completos, manter um `PROJECT_MAP.md` com uma linha por módulo e as assinaturas das funções principais. A IA pode gerar e atualizar esse mapa periodicamente.
