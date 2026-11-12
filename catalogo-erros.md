@@ -15,12 +15,12 @@ def gerar_protocolo_ticket():
     return _contador_protocolo
 ```
 
-**Tipo de erro:** Condição de Corrida (Race Condition) / Estado Compartilhado (Slides Etapa 3, p. 18).
+**Tipo de erro:** Condição de Corrida (Race Condition) / Estado Compartilhado.
 
 **Simulação:** Duas threads chamam a função simultaneamente. Ambas leem `_contador_protocolo` (ex: 1000), ambas incrementam para 1001. Dois tickets diferentes recebem o mesmo protocolo.
 
 **Revisão Crítica:**
-A leitura superficial mostra uma função simples e correta. A revisão crítica (Slides Etapa 3, p. 16) pergunta: "Algum valor é compartilhado entre chamadas ou usuários?". Sim, o `_contador_protocolo` global é compartilhado. Em um ambiente concorrente (servidor web), isso é uma "mina terrestre" (Slides Etapa 3, p. 15) que não aparece em testes de uma única chamada.
+A leitura superficial mostra uma função simples e correta. A revisão crítica pergunta: "Algum valor é compartilhado entre chamadas ou usuários?". Sim, o `_contador_protocolo` global é compartilhado. Em um ambiente concorrente (servidor web), isso é uma "mina terrestre" que não aparece em testes de uma única chamada.
 
 **Correção:**
 Uso de um `threading.Lock` para garantir exclusão mútua ou, preferencialmente, delegar a geração do ID para o banco de dados (ex: `AUTO_INCREMENT`), que é atômico por natureza.
@@ -49,12 +49,12 @@ def ler_anexo(caminho_arquivo):
         return f.read()
 ```
 
-**Tipo de erro:** Caso de Borda / Suposição Errada sobre o Ambiente (Slides Etapa 3, p. 7).
+**Tipo de erro:** Caso de Borda / Suposição Errada sobre o Ambiente.
 
 **Análise:** O código assume que o arquivo sempre existe, é legível e está no formato correto. Ignora o "caminho infeliz".
 
 **Revisão Crítica:**
-A IA não considera entradas incomuns (arquivo inexistente, permissão negada, encoding errado) a menos que instruída (Slides Etapa 3, p. 7). O código é um "castelo de cartas" que desaba na primeira falha de I/O.
+A IA não considera entradas incomuns (arquivo inexistente, permissão negada, encoding errado) a menos que instruída. O código é um "castelo de cartas" que desaba na primeira falha de I/O.
 
 **Correção:**
 Tratamento explícito de exceções e validação de entrada.
@@ -88,12 +88,12 @@ def enviar_notificacao_email(destinatario, assunto, corpo):
     server.quit()
 ```
 
-**Tipo de erro:** Alucinação (Slides Etapa 3, p. 6).
+**Tipo de erro:** Alucinação.
 
 **Análise:** O método `send_email` não existe na biblioteca `smtplib`. O nome é plausível, mas o código falhará em tempo de execução.
 
 **Revisão Crítica:**
-Conferir a documentação oficial da biblioteca (Slides Etapa 3, p. 6). A IA inventou um método que "parece" certo.
+Conferir a documentação oficial da biblioteca. A IA inventou um método que "parece" certo.
 
 **Correção:**
 Uso da API correta (`sendmail`), com construção da mensagem via `email.message`.
